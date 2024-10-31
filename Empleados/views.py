@@ -11,16 +11,16 @@ from Empleados.serializers import SerializadorDepartamentos,SerializadorEmpleado
 def departamentosApi(request, id=0):
     if request.method == 'GET':
         departamentos = Departamentos.objects.all()
-        departamentos_serializador = departamentos_serializador(departamentos, many=True)
+        departamentos_serializador = SerializadorDepartamentos(departamentos, many=True)
         return JsonResponse(departamentos_serializador.data, safe=False)
     elif request.method == 'POST':
         data_departamento = JSONParser().parse(request)
-        departamentos_serializador = departamentos_serializador(data=data_departamento)
+        departamentos_serializador = SerializadorDepartamentos(data=data_departamento)
         if departamentos_serializador.is_valid():
             departamentos_serializador.save()
             return JsonResponse("Exitosamente added", safe=False)
         return JsonResponse('Error adding', safe=False)
-    elif request == 'PUT':
+    elif request.method == 'PUT':
         data_departamento = JSONParser().parse(request)
         departamento = Departamentos.objects.get(IdDepartamento=data_departamento['IdDepartamento'])
         departamentos_serializador = departamentos_serializador(departamento, data=data_departamento)

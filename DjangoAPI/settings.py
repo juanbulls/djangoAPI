@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
-    'corsheader.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,7 +85,6 @@ DATABASES = {
         'NAME': 'mainDB',
         'CLIENT': {
             "host":"mongodb+srv://bulcaano:aIsU6XEvlSeT7b3k@tutorial.krspo.mongodb.net/?retryWrites=true&w=majority&appName=tutorial",
-            "name":"mainDB",
             "authMechanism":"SCRAM-SHA-1"
         },
     }
